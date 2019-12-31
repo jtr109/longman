@@ -1,0 +1,12 @@
+[package]
+name = "longman"
+version = "0.1.0"
+authors = ["jtr109 <lyp_login@outlook.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+reqwest = { version = "0.10.0", features = ["json"] }
+error-chain = "0.12.1"
+tokio = { version = "0.2.6", features = ["full"] }
