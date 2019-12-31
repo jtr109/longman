@@ -1,7 +1,8 @@
 #[macro_use]
 extern crate error_chain;
+extern crate serde;
 
-use std::collections::HashMap;
+use serde::Deserialize;
 
 error_chain! {
     foreign_links {
@@ -9,10 +10,25 @@ error_chain! {
     }
 }
 
+#[derive(Debug, Deserialize)]
+struct SearchResult {
+    searchtext: String,
+}
+
+#[derive(Debug, Deserialize)]
+struct Body {
+    results: Vec<SearchResult>,
+}
+
 #[tokio::main]
 async fn main() -> Result<()> {
-    let resp: HashMap<String, String> =
-        reqwest::get("https://httpbin.org/ip").await?.json().await?;
+    let client = reqwest::Client::new();
+    let resp: Body = client
+        .get("https://www.ldoceonline.com/autocomplete/english/?q=test&contentType=application%2Fjson%3B+charset%3Dutf-8")
+        .send()
+        .await?
+        .json()
+        .await?;
     println!("{:#?}", resp);
     Ok(())
 }
