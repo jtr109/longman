@@ -21,7 +21,10 @@ struct Body {
 
 #[derive(Debug, Serialize)]
 struct Item {
+    uid: String,
     title: String,
+    arg: String,
+    autocomplete: String,
 }
 
 #[derive(Debug, Serialize)]
@@ -34,7 +37,10 @@ fn convert(body: Body) -> Output {
         .results
         .into_iter()
         .map(|r| Item {
-            title: r.searchtext,
+            uid: r.searchtext.clone(),
+            title: r.searchtext.clone(),
+            arg: r.searchtext.clone(),
+            autocomplete: r.searchtext.clone(),
         })
         .collect();
     Output { items }
