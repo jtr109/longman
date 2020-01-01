@@ -25,6 +25,7 @@ struct Item {
     title: String,
     arg: String,
     autocomplete: String,
+    quicklookurl: String,
 }
 
 #[derive(Debug, Serialize)]
@@ -41,6 +42,10 @@ fn convert(body: Body) -> Output {
             title: r.searchtext.clone(),
             arg: r.searchtext.clone(),
             autocomplete: r.searchtext.clone(),
+            quicklookurl: format!(
+                "https://www.ldoceonline.com/search/english/direct/?q={}",
+                r.searchtext
+            ),
         })
         .collect();
     Output { items }
