@@ -375,7 +375,7 @@ dependencies = [
 
 [[package]]
 name = "longman"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "clap 2.33.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "error-chain 0.12.1 (registry+https://github.com/rust-lang/crates.io-index)",

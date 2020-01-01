@@ -1,6 +1,6 @@
 [package]
 name = "longman"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["jtr109 <lyp_login@outlook.com>"]
 edition = "2018"
 
