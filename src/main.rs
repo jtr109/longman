@@ -1,5 +1,6 @@
 use clap::{App, Arg};
 use error_chain::error_chain;
+use percent_encoding::{percent_encode, NON_ALPHANUMERIC};
 use serde::{Deserialize, Serialize};
 
 error_chain! {
@@ -44,7 +45,7 @@ fn convert(body: Body) -> Output {
             autocomplete: r.searchtext.clone(),
             quicklookurl: format!(
                 "https://www.ldoceonline.com/search/english/direct/?q={}",
-                r.searchtext
+                percent_encode(r.searchtext.as_bytes(), NON_ALPHANUMERIC).to_string(),
             ),
         })
         .collect();
