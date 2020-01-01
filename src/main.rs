@@ -1,7 +1,4 @@
-#[macro_use]
-extern crate error_chain;
-extern crate serde;
-
+use error_chain::error_chain;
 use serde::{Deserialize, Serialize};
 
 error_chain! {
@@ -51,7 +48,6 @@ async fn main() -> Result<()> {
         .await?
         .json()
         .await?;
-    // println!("{:#?}", body);
     let output = convert(body);
     println!("{}", serde_json::to_string(&output)?);
     Ok(())
